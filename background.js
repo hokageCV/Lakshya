@@ -1,13 +1,13 @@
-// Background script
+console.log("Background script loaded.");
 
-// URL for the API you want to call
-const API_URL = 'https://api.quotable.io/random';
 
-fetch(API_URL)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
+
+// chrome.action.onClicked.addListener( function(tab){
+//   console.log("clicked! from background")
+//   let msg = {
+//     txt: "ram ram"
+//   }
+//   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+//     chrome.tabs.sendMessage(tabs[0].id, msg);
+//   });
+// })

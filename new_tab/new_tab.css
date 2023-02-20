@@ -1,12 +1,15 @@
 :root{
-    --baseBG: #4C566A;
-    --calendarBG: #434C5E;
-    --calendarShadow: #3B4252;
-    --monthBorder: #FFFFFF;
-    --dotBorder:  #000000;
-    --todayBorder: #041622;
-    --dayPassed:#FC5185 ;
-    --dayLeft: #1DA1F2;
+    --baseBG: #2e3436;
+
+    --calBG: #202425;
+    --calShadow: #24292b;
+    --calMonthBorder: #FFFFFF;
+    --calDotBorder:  #000000;
+    --calTodayBorder: #041622;
+    --calDayPassed:#FC5185 ;
+    --calDayLeft: #1DA1F2;
+
+    --quoteText: #c0c2c2;
 }
 
 body{
@@ -22,12 +25,12 @@ body{
 
     min-width: 50%;
     max-width: 70%;
-    padding: 8px 8px;
-    margin: auto;
+    padding: 10px 10px;
+    margin: 10px auto 15px;
 
-    background-color: var(--calendarBG);
+    background-color: var(--calBG);
     border-radius: 1rem;
-    box-shadow: 5px 6px 8px 3px #3B4252;
+    /* box-shadow: 4px 5px 6px 2px var(--calShadow); */
 
     user-select: none;
 }
@@ -46,38 +49,42 @@ body{
     width: 8px;
     height: 8px;
     border-radius: 3px;
-    border: 2px solid var(--dotBorder) ;
-    background-color: var(--dayLeft);
+    border: 2px solid var(--calDotBorder) ;
+    background-color: var(--calDayLeft);
 }
 
 .passed {
-    background-color: var(--dayPassed);
+    width: 6px;
+    height: 6px;
+    background-color: var(--calDayPassed);
 }
 
 /* *********  Quote  *********    */
 
 #quoteDabba{
+    color: var(--quoteText);
     display: flex;
     flex-direction: column;
     gap: 1px;
     align-items: center;
     justify-content: center;
     
-    padding: 2px 4px;
-    margin: 30px auto 2px;
+    padding: 1px 4px;
+    margin: 10px auto 2px;
     max-width: 70%;
-
-    /* border: 1px solid red; */
 }
 
-.quote{
+#quote{
     font-size: 20px;
     margin: 0;
-}
-.by{
-    font-size: 14px;
-    margin: 0;
+    padding: 0;
 }
 
-/* *********  Popup  *********    */
+#by{
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+/* *********************    */
 
