@@ -1,8 +1,9 @@
-# Varsh
-See the days of the year in the new tab
+# Lakshya
+Stay organized and mindful about your work by tracking the number of days that have passed in the year every time you open a new tab
 
 <br>
 
 ### Upcoming features :
-- add monthly highlight task
-- options to customize
+- [x] quote via API
+- [] customization
+- [] add monthly highlight task

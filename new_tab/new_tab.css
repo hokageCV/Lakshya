@@ -1,6 +1,8 @@
 :root{
     --baseBG: #2e3436;
 
+    --headlineText: 	#E9DCC9;
+
     --calBG: #202425;
     --calShadow: #24292b;
     --calMonthBorder: #FFFFFF;
@@ -14,23 +16,41 @@
 
 body{
     background-color: var(--baseBG) ;
+    margin: 0;
+    padding: 0;
 }
 
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#headline{
+    color: var(--headlineText);
+    font-size: 25px;
+    font-weight: 400;
+
+    padding: 5px;
+    margin: 2px auto 4px;
+}
 /* *********  Calendar  *********    */
 
 #calendar {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: center;
+    align-items:stretch;
+    gap: 18px;
 
     min-width: 50%;
-    max-width: 70%;
+    width: 70%;
     padding: 10px 10px;
-    margin: 10px auto 15px;
+    margin: 2px auto 10px;
 
     background-color: var(--calBG);
     border-radius: 1rem;
-    /* box-shadow: 4px 5px 6px 2px var(--calShadow); */
 
     user-select: none;
 }
@@ -42,7 +62,6 @@ body{
     gap: 2px;
     
     margin: 3px 3px;
-    /* border: 1px solid var(--monthBorder); */
 }
 
 .dot {
@@ -51,6 +70,8 @@ body{
     border-radius: 3px;
     border: 2px solid var(--calDotBorder) ;
     background-color: var(--calDayLeft);
+
+    margin: 0 auto;
 }
 
 .passed {
@@ -66,11 +87,11 @@ body{
     display: flex;
     flex-direction: column;
     gap: 1px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     
     padding: 1px 4px;
-    margin: 10px auto 2px;
+    margin: 12px auto 2px;
     max-width: 70%;
 }
 
@@ -80,9 +101,10 @@ body{
     padding: 0;
 }
 
-#by{
+#author{
     font-size: 16px;
     margin: 0;
+    margin-top: 5px;
     padding: 0;
 }
 

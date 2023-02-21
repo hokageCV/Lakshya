@@ -2,34 +2,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
     displayCalendar()
     fetchAndDisplayQuote()
 });
-// ===============================
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === "show quote") {
-      document.getElementById("quoteDabba").style.display = "flex";
-      sendResponse({ result: " received : show quote" });
-    } 
-    else if (message.type === "hide quote") {
-      document.getElementById("quoteDabba").style.display = "none";
-      sendResponse({ result: " received : hide quote" });
-    }
-});
 
-// ====
 
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse)=> {
-//     console.log("message received in newtab.js :", message)
-//     const quoteDabba = document.getElementById("quoteDabba")
 
-//     if(message.type === "show quote"){
-//         quoteDabba.style.display = "flex";
-//     }
-//     else if(message.type === "hide quote"){
-//         quoteDabba.style.display = "none";
-//     }
-// });
 
 // ===============================
+
+let daysPassed = 0;
+
 function displayCalendar() {
     const calendar = document.getElementById("calendar");
     let today = new Date();
@@ -56,16 +37,24 @@ function displayCalendar() {
             
             if (today.getTime() > dayDate.getTime()) {
                 dot.classList.add("passed");
+                daysPassed++;
             }
 
             monthContainer.appendChild(dot);
         }
         calendar.appendChild(monthContainer);
     }
+
+    displayHeadline()
 }
   
 function isLeapYear(year) {
     return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
+}
+
+function displayHeadline(){
+    const headLine = document.getElementById("headline")
+    headLine.textContent = `${daysPassed} Days Have Passed This Year`
 }
 
 // ===============================
@@ -76,6 +65,7 @@ async function getQuote(){
     try{
         const response = await fetch(API_URL);
         const json = await response.json()
+        console.log("🚀 ~ file: new_tab.js:93 ~ getQuote ~ json:", json)
 
         return {
             quote: json.content,
@@ -92,7 +82,7 @@ async function displayQuote(data){
     const author = document.getElementById("author");
 
     quote.textContent = data.quote;
-    author.textContent  = data.author
+    author.textContent  = `- ${data.author}`
 }
 
 function storeQuote(quoteData) {

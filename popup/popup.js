@@ -1,12 +1,14 @@
 const quoteCheckbox = document.getElementById("toggleQuote")
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    const data = localStorage.getItem("showQuote")
+    const retrievedData = localStorage.getItem("showQuote")
+    const data = JSON.parse(retrievedData)
     quoteCheckbox.checked = data.showQuote ?? true;
 })
 
 quoteCheckbox.addEventListener("change", ()=>{
-    localStorage.setItem("showQuote", { showQuote: quoteCheckbox.checked });
+    localStorage.setItem("showQuote", JSON.stringify({ showQuote: quoteCheckbox.checked }));
+
     const message = {
         type: quoteCheckbox.checked ? "show quote" : "hide quote" 
     };

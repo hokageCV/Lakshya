@@ -7,37 +7,47 @@
 }
 
 body{
-    width: 200px;
+    width: 175px;
     margin: 0;
     padding: 0;
     user-select: none;
 }
 
 nav{
+    background-color: var(--navBG);
+    padding: 1px;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav p{
     font-size: 22px;
     color: var(--navText);
-    background-color: var(--navBG);
-    height: max-content;
-    padding: 5px ;
+
+    margin: 1px;
+    padding: 5px;
+    height: 30px;
 }
 
 main{
     font-size: 16px;
     color: var(--mainText);
     background-color: var(--mainBG);
-    padding: 10px;
+    padding: 5px 6px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 /* *********  show quote  *********    */
 
-#showQuote{
+.popupOption{
     background-color: var(--checkBG);
-    padding: 5px 10px;
+    padding: 1px;
     border-radius: 10px;
 }
 
