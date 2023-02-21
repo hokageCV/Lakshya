@@ -5,5 +5,5 @@ Stay organized and mindful about your work by tracking the number of days that h
 
 ### Upcoming features :
 - [x] quote via API
-- [] customization
-- [] add monthly highlight task
+- [ ] customization
+- [ ] add monthly highlight task
