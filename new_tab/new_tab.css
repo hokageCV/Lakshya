@@ -32,8 +32,9 @@ body{
     font-size: 25px;
     font-weight: 400;
 
-    padding: 5px;
-    margin: 2px auto 4px;
+    padding: 1px 1px 3px;
+    margin: 1px;
+    user-select: none;
 }
 /* *********  Calendar  *********    */
 
@@ -46,8 +47,8 @@ body{
 
     min-width: 50%;
     width: 70%;
-    padding: 10px 10px;
-    margin: 2px auto 10px;
+    padding: 8px 8px;
+    margin: 1px auto 3px;
 
     background-color: var(--calBG);
     border-radius: 1rem;
@@ -61,7 +62,7 @@ body{
     grid-auto-flow: row;
     gap: 2px;
     
-    margin: 3px 3px;
+    margin: 2px 3px;
 }
 
 .dot {
@@ -91,7 +92,7 @@ body{
     justify-content: center;
     
     padding: 1px 4px;
-    margin: 12px auto 2px;
+    margin: 10px auto 1px;
     max-width: 70%;
 }
 
@@ -104,7 +105,7 @@ body{
 #author{
     font-size: 16px;
     margin: 0;
-    margin-top: 5px;
+    margin-top: 4px;
     padding: 0;
 }
 
