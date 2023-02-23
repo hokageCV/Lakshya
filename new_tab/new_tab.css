@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&family=Cormorant+SC&display=swap');
+
 :root{
     --baseBG: #2e3436;
 
@@ -22,6 +24,9 @@ body{
     background-color: var(--baseBG) ;
     margin: 0;
     padding: 0;
+
+    font-family: 'Averia Serif Libre', cursive;
+
 }
 
 .container{
@@ -33,7 +38,7 @@ body{
 
 #headline{
     color: var(--headlineText);
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 400;
 
     padding: 1px 1px 3px;
@@ -140,6 +145,7 @@ body{
     font-size: 16px;
     font-weight: 400;
     color: var(--notifyText );
+    font-family: 'Cormorant SC', serif;
   }
   
   .toast .progress {
