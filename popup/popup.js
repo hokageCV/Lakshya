@@ -1,26 +1,29 @@
-const quoteCheckbox = document.getElementById("quoteCheckbox")
+const quoteCheckbox = document.getElementById("quoteCheckbox");
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    chrome.storage.local.get(["showQuote"], (data)=>{
-        if(data.showQuote){
-            quoteCheckbox.checked = true
+document.addEventListener("DOMContentLoaded", () => {
+    chrome.storage.local.get(["showQuote"]).then((data) => {
+        if (data.showQuote) {
+            quoteCheckbox.checked = true;
+        } else {
+            quoteCheckbox.checked = false;
         }
-        else{
-            quoteCheckbox.checked = false
-        }
-    })
-})
+    });
+});
 
-quoteCheckbox.addEventListener("change", ()=>{
-    chrome.storage.local.set({showQuote: quoteCheckbox.checked})
+quoteCheckbox.addEventListener("change", () => {
+    chrome.storage.local
+        .set({ showQuote: quoteCheckbox.checked })
+        .then((data) => {
+            console.log(data);
+        });
 
     const message = {
-        command: quoteCheckbox.checked ? "show quote" : "hide quote" 
+        command: quoteCheckbox.checked ? "show quote" : "hide quote",
     };
 
-    chrome.tabs.query({}, (tabs)=>{
-        for(let i=0; i< tabs.length; i++){
+    chrome.tabs.query({}, (tabs) => {
+        for (let i = 0; i < tabs.length; i++) {
             chrome.tabs.sendMessage(tabs[i].id, message);
         }
-    })
-})
+    });
+});
