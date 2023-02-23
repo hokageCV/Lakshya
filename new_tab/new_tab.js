@@ -1,8 +1,14 @@
 import { displayHeadlineAndCalendar } from "./calendar.js";
 import { fetchAndDisplayQuote } from "./quote.js";
-import { changeElementDisplay } from "../utils/utils.js";
+import { changeElementDisplay, copyText } from "./utils.js";
 
 const quoteDabba = document.getElementById("quoteDabba");
+const quote = document.getElementById("quote");
+
+// =====================
+quote.addEventListener("click", copyText);
+
+// =====================
 
 document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get(["showQuote"]).then((data) => {
@@ -24,3 +30,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         changeElementDisplay(quoteDabba, "none");
     }
 });
+
+// =====================

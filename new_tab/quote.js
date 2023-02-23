@@ -73,10 +73,6 @@ async function getStoredQuote() {
 
 export async function fetchAndDisplayQuote() {
     const storedQuoteData = await getStoredQuote();
-    console.log(
-        "🚀 ~ file: quote.js:78 ~ fetchAndDisplayQuote ~ storedQuoteData:",
-        storedQuoteData
-    );
 
     if (storedQuoteData && !isQuoteOlderThanToday(storedQuoteData.quoteDate)) {
         displayQuote(storedQuoteData);

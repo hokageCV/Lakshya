@@ -8,10 +8,14 @@
     --calMonthBorder: #FFFFFF;
     --calDotBorder:  #000000;
     --calTodayBorder: #041622;
-    --calDayPassed:#FC5185 ;
+    --calDayPassed:#FC5185;
     --calDayLeft: #1DA1F2;
 
     --quoteText: #c0c2c2;
+
+    --notifyBG: #6c7072;
+    --notifyText: #fbfcf8;
+    --notifyProgressBar: var(--calDayPassed);
 }
 
 body{
@@ -100,6 +104,8 @@ body{
     font-size: 20px;
     margin: 0;
     padding: 0;
+
+    cursor: pointer;
 }
 
 #author{
@@ -110,4 +116,58 @@ body{
 }
 
 /* *********************    */
+.hidden{
+    display: none;
+}
 
+.toast {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+
+    border-radius: 12px;
+    background: var(--notifyBG);
+    padding: 10px 20px;
+    overflow: hidden;
+  }
+  
+  .toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--notifyText );
+  }
+  
+  .toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  }
+  
+  .toast .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--notifyProgressBar);
+  }
+  
+  .progress.active:before {
+    animation: progress 5s linear forwards;
+  }
+  
+  @keyframes progress {
+    100% {
+      right: 100%;
+    }
+  }
+
+  /* *********************    */
