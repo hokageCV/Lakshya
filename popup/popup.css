@@ -3,7 +3,7 @@
     --navText: #F9ab58;
     --mainBG: #6c7072;
     --mainText: #fbfcf8;
-    --checkBG: #616466;
+    --popupOptionBG: #616466;
 }
 
 body{
@@ -35,7 +35,7 @@ main{
     font-size: 16px;
     color: var(--mainText);
     background-color: var(--mainBG);
-    padding: 5px 6px;
+    padding: 5px;
 
     display: flex;
     flex-direction: column;
@@ -46,10 +46,10 @@ main{
 /* *********  show quote  *********    */
 
 .popupOption{
-    background-color: var(--checkBG);
-    padding: 1px;
+    background-color: var(--popupOptionBG);
+    padding: 1px 3px;
     border-radius: 10px;
+    width: max-content;
 }
-
 
 /* *********************    */
