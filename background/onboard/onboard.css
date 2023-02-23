@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap');
+
 :root{
     --baseBG: #2e3436;
-
     --headlineText:#E9DCC9;
     --inputBG: #24292b;
     --inputText: #cad0d3;
@@ -10,6 +11,7 @@
 
 body{
     background-color: var(--baseBG);
+    font-family: 'Alegreya Sans', sans-serif;
 }
 
 h1{
@@ -35,7 +37,8 @@ input{
 }
 
 input::placeholder{
-    color: var(--placeholder)
+    color: var(--placeholder);
+    font-size: 16px;
 }
 
 button{
@@ -44,9 +47,18 @@ button{
     border-radius: 5px;
     background-color: var(--btnBG);
     cursor: pointer;
+    font-size: 18px;
+
+    position: relative;
 }
 
 button:hover,
 button:focus {
   padding: 8px 23px;
+}
+
+button::before{
+    content: "";
+    position: absolute;
+    inset: -15px;
 }

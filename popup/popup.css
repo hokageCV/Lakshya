@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
+
 :root{
     --navBG: #353839;
     --navText: #F9ab58;
@@ -25,6 +27,7 @@ nav{
 nav p{
     font-size: 22px;
     color: var(--navText);
+    font-family: 'Averia Serif Libre', cursive;
 
     margin: 1px;
     padding: 5px;
@@ -34,6 +37,7 @@ nav p{
 main{
     font-size: 16px;
     color: var(--mainText);
+    font-family: Arial, Helvetica, sans-serif;
     background-color: var(--mainBG);
     padding: 5px;
 
