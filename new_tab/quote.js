@@ -23,13 +23,17 @@ async function displayQuote(data) {
 }
 
 function storeQuote(quoteData) {
-    chrome.storage.local.set({
-        quoteData: {
-            quote: quoteData.quote,
-            author: quoteData.author,
-            quoteDate: new Date().toString(),
-        },
-    });
+    chrome.storage.local
+        .set({
+            quoteData: {
+                quote: quoteData.quote,
+                author: quoteData.author,
+                quoteDate: new Date().toString(),
+            },
+        })
+        .then((data) => {
+            console.log("quote saved");
+        });
 }
 
 function isQuoteOlderThanToday(storedQuoteDate) {
@@ -46,13 +50,11 @@ function isQuoteOlderThanToday(storedQuoteDate) {
 }
 
 async function getStoredQuote() {
-    const returnedData = await chrome.storage.local.get(["quoteData"]);
+    const data = await chrome.storage.local.get(["quoteData"]);
+    const storedQuote = data.quoteData?.quote;
+    const storedAuthor = data.quoteData?.author;
+    const storedQuoteDate = data.quoteData?.quoteDate;
 
-    const storedQuote = returnedData.quoteData.quote;
-    const storedAuthor = returnedData.quoteData.author;
-    const storedQuoteDate = returnedData.quoteData.quoteDate;
-
-    // If all three exist and the quote is not older than today, return object containing them
     if (
         storedQuote &&
         storedAuthor &&
@@ -71,6 +73,11 @@ async function getStoredQuote() {
 
 export async function fetchAndDisplayQuote() {
     const storedQuoteData = await getStoredQuote();
+    console.log(
+        "🚀 ~ file: quote.js:78 ~ fetchAndDisplayQuote ~ storedQuoteData:",
+        storedQuoteData
+    );
+
     if (storedQuoteData && !isQuoteOlderThanToday(storedQuoteData.quoteDate)) {
         displayQuote(storedQuoteData);
     } else {
