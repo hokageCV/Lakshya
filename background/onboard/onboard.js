@@ -18,6 +18,7 @@ const saveName = async () => {
         await chrome.storage.local.set({ userName: input.value });
         await chrome.storage.local.set({ isOnboarded: true });
         window.close();
+        chrome.tabs.create({ url: "chrome://newtab" });
     } catch (err) {
         console.log(err);
     }
