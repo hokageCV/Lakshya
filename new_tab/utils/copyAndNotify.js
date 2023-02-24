@@ -1,15 +1,9 @@
-export const changeElementDisplay = (element, newDisplay) => {
-    element.style.display = newDisplay;
-};
-
 export const copyText = () => {
     const cb = navigator.clipboard;
     cb.writeText(quote.innerText);
 
     showToast();
 };
-
-// ========
 
 function showToast() {
     const toast = document.querySelector(".toast");
