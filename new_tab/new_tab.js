@@ -11,12 +11,15 @@ quote.addEventListener("click", copyText);
 
 document.addEventListener("DOMContentLoaded", () => {
     // checking for initial render
-    chrome.storage.local.get(["showQuote"]).then((data) => {
+    chrome.storage.local.get(["showQuote", "docTitle"]).then((data) => {
+        // quote related
         if (data.showQuote) {
             changeElementDisplay(quoteDabba, "flex");
         } else {
             changeElementDisplay(quoteDabba, "none");
         }
+        // title related
+        document.title = data.docTitle;
     });
 
     displayHeadlineAndCalendar();
@@ -25,10 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // listening for user actions
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    // quote related
     if (message.command === "show quote") {
         changeElementDisplay(quoteDabba, "flex");
     } else if (message.command === "hide quote") {
         changeElementDisplay(quoteDabba, "none");
+    }
+    // title related
+    else if (message.command === "change title") {
+        chrome.storage.local.get(["docTitle"]).then((data) => {
+            document.title = data.docTitle;
+        });
     }
 });
 

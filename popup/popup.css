@@ -6,13 +6,15 @@
     --mainBG: #6c7072;
     --mainText: #fbfcf8;
     --popupOptionBG: #616466;
+    --titlePlaceholder: #adaeaf;
 }
 
 body{
-    width: 175px;
+    width: 250px;
     margin: 0;
     padding: 0;
     user-select: none;
+    box-sizing: border-box;
 }
 
 nav{
@@ -47,13 +49,36 @@ main{
     align-items: flex-start;
 }
 
-/* *********  show quote  *********    */
+
+/* *********************    */
 
 .popupOption{
     background-color: var(--popupOptionBG);
     padding: 1px 3px;
+    margin: 8px 3px;
     border-radius: 10px;
     width: max-content;
 }
 
-/* *********************    */
+.quote{
+    padding: 8px;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+
+    padding: 8px;
+    width: 200px;
+}
+
+.title input{
+    outline: none;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+}
+
+.title input::placeholder{
+    color: var(--titlePlaceholder)
+}
