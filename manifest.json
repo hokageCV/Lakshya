@@ -3,33 +3,29 @@
     "name": "Lakshya",
     "version": "0.0.1",
     "description": "See the year in new tab",
-    "icons":{
+    "icons": {
         "16": "./assets/icon16.png",
         "32": "./assets/icon32.png",
         "48": "./assets/icon48.png",
         "128": "./assets/icon128.png"
     },
-
-    "permissions": ["activeTab", "tabs", "storage"],
-    "host_permissions": ["<all_urls>"],
-
-    "chrome_url_overrides": {
-      "newtab": "./new_tab/new_tab.html"
-    },
-    "content_scripts":[
-        {
-            "matches": ["<all_urls>"],
-            "js":[
-                "./new_tab/new_tab.js"
-            ]
-        }
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "storage"
     ],
-    "background":{
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "chrome_url_overrides": {
+        "newtab": "./new_tab/new_tab.html"
+    },
+    "background": {
         "service_worker": "./background/backgroundWrapper.js"
     },
-    "action":{
+    "action": {
         "default_popup": "./popup/popup.html",
         "default_title": "Lakshya",
         "default_icon": "./assets/icon48.png"
     }
-  }
+}
