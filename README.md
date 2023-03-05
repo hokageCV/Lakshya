@@ -2,19 +2,19 @@
 
 Stay organized and mindful about your work by tracking the number of days that have passed in the year every time you open a new tab
 
-![Laskhya_v1](./assets/lakshya_v1.png)
+![Laskhya_Image](./assets/lakshya_v2.png)
 
 ### Installation
 
 To install the Lakshya browser extension, follow these steps:
 
--   Go to the Lakshya [GitHub repository](https://github.com/hokageCV/Lakshya)
--   Click on the "Code" button and select "Download ZIP".
--   Extract the downloaded ZIP file to a folder on your computer.
--   Open your web browser and navigate to the extensions page. This can typically be done by typing "chrome://extensions" or "about:addons" in the URL bar.
--   Enable developer mode by clicking on the toggle switch in the top right corner of the page.
--   Click on the "Load unpacked" button and select the folder where you extracted the Lakshya extension files.
--   The extension should now be installed and ready to use.
+- Go to the Lakshya [GitHub repository](https://github.com/hokageCV/Lakshya)
+- Click on the "Code" button and select "Download ZIP".
+- Extract the downloaded ZIP file to a folder on your computer.
+- Open your web browser and navigate to the extensions page. This can typically be done by typing "chrome://extensions" or "about:addons" in the URL bar.
+- Enable developer mode by clicking on the toggle switch in the top right corner of the page.
+- Click on the "Load unpacked" button and select the folder where you extracted the Lakshya extension files.
+- The extension should now be installed and ready to use.
 
 ### Usage
 
