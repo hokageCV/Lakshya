@@ -2,6 +2,8 @@
 
 Stay organized and mindful about your work by tracking the number of days that have passed in the year every time you open a new tab
 
+![Laskhya_v1](./assets/lakshya_v1.png)
+
 ### Installation
 
 To install the Lakshya browser extension, follow these steps:
