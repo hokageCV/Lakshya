@@ -5,6 +5,14 @@ chrome.runtime.onInstalled.addListener(async (e) => {
     if (e.reason === chrome.runtime.OnInstalledReason.INSTALL) {
         await chrome.storage.local.set({ isOnboarded: false });
         await chrome.storage.local.set({ showQuote: true });
+
+        await chrome.storage.local.set({ showTasks: true });
+        await chrome.storage.local.set({ tasks: {
+            task1:"",
+            task2:"",
+            task3:"",
+        } });
+
         await chrome.storage.local.set({ docTitle: "Blink" });
 
         chrome.tabs.create({

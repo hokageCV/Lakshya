@@ -1,12 +1,19 @@
 const quoteCheckbox = document.getElementById("quoteCheckbox");
+const tasksCheckbox = document.getElementById("tasksCheckbox");
 const titleInput = document.getElementById("titleInput");
 
 document.addEventListener("DOMContentLoaded", () => {
-    chrome.storage.local.get(["showQuote", "docTitle"]).then((data) => {
+    chrome.storage.local.get(["showQuote", "showTasks", "docTitle"]).then((data) => {
         if (data.showQuote) {
             quoteCheckbox.checked = true;
         } else {
             quoteCheckbox.checked = false;
+        }
+
+        if (data.showTasks) {
+            tasksCheckbox.checked = true;
+        } else {
+            tasksCheckbox.checked = false;
         }
 
         titleInput.placeholder = data?.docTitle;
@@ -24,6 +31,26 @@ quoteCheckbox.addEventListener("change", () => {
 
     const message = {
         command: quoteCheckbox.checked ? "show quote" : "hide quote",
+    };
+
+    chrome.tabs.query({}, (tabs) => {
+        for (let i = 0; i < tabs.length; i++) {
+            chrome.tabs.sendMessage(tabs[i].id, message);
+        }
+    });
+});
+
+// =====================
+
+tasksCheckbox.addEventListener("change", () => {
+    chrome.storage.local
+        .set({ showTasks: tasksCheckbox.checked })
+        .then((data) => {
+            console.log(data);
+        });
+
+    const message = {
+        command: tasksCheckbox.checked ? "show tasks" : "hide tasks",
     };
 
     chrome.tabs.query({}, (tabs) => {
