@@ -22,13 +22,4 @@ export const setUpEventListeners = () => {
   task3.addEventListener("input", () => {
     updateTaskInStorage("task3", task3.textContent);
   });
-
-  chrome.storage.onChanged.addListener((changes, namespace) => {
-    if (namespace === "local" && changes.tasks) {
-      const { task1: newTask1, task2: newTask2, task3: newTask3 } = changes.tasks.newValue;
-      task1.textContent = newTask1;
-      task2.textContent = newTask2;
-      task3.textContent = newTask3;
-    }
-  });
 };

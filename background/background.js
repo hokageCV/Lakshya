@@ -21,3 +21,12 @@ chrome.runtime.onInstalled.addListener(async (e) => {
     console.log("Antauri Sprx! Gibson! Nova! Otto! REELOD!");
   }
 });
+
+// listening for shortcut key
+chrome.commands.onCommand.addListener((command) => {
+  if (command === "toggle-showTasks-display") {
+    chrome.storage.local.get("showTasks", (data) => {
+      chrome.storage.local.set({ showTasks: !data.showTasks });
+    });
+  }
+});

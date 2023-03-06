@@ -41,3 +41,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 // =====================
+
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  // single tasks
+  if (namespace === "local" && changes.tasks) {
+    const { task1: newTask1, task2: newTask2, task3: newTask3 } = changes.tasks.newValue;
+    task1.textContent = newTask1;
+    task2.textContent = newTask2;
+    task3.textContent = newTask3;
+  }
+  // tasks dabba
+  else if (namespace === "local" && changes.showTasks) {
+    const newShowTasks = changes.showTasks.newValue;
+    changeElementDisplay(tasksDabba, newShowTasks ? "block" : "none");
+  }
+});
