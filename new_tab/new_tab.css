@@ -140,13 +140,18 @@ body {
   margin: 15px;
   padding: 0;
 }
-#tasksDabba p:hover {
+#tasksDabba .task-content {
+  border-radius: 5px;
+}
+#tasksDabba .task-content:hover {
   background-color: var(--taskHover);
   cursor: pointer;
+  padding: 2px 5px;
 }
-#tasksDabba p[contenteditable="true"]:focus {
+#tasksDabba .task-content[contenteditable="true"]:focus {
   background-color: var(--taskEditing);
   cursor: text;
+  padding: 2px 8px;
 }
 
 /* ****************************  Quote  **********************************    */
