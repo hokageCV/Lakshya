@@ -32,27 +32,25 @@ quoteCheckbox.addEventListener("change", () => {
   };
 
   chrome.tabs.query({}, (tabs) => {
-    for (let i = 0; i < tabs.length; i++) {
-      chrome.tabs.sendMessage(tabs[i].id, message);
-    }
+    tabs
+      .filter((tab) => tab.url === "chrome://newtab/")
+      .forEach((tab) => chrome.tabs.sendMessage(tab.id, message));
   });
 });
 
 // =====================
 
 tasksCheckbox.addEventListener("change", () => {
-  chrome.storage.local.set({ showTasks: tasksCheckbox.checked }).then((data) => {
-    console.log(data);
-  });
+  chrome.storage.local.set({ showTasks: tasksCheckbox.checked });
 
   const message = {
     command: tasksCheckbox.checked ? "show tasks" : "hide tasks",
   };
 
   chrome.tabs.query({}, (tabs) => {
-    for (let i = 0; i < tabs.length; i++) {
-      chrome.tabs.sendMessage(tabs[i].id, message);
-    }
+    tabs
+      .filter((tab) => tab.url === "chrome://newtab/")
+      .forEach((tab) => chrome.tabs.sendMessage(tab.id, message));
   });
 });
 
@@ -72,9 +70,9 @@ titleInput.addEventListener("keydown", async (e) => {
       };
 
       chrome.tabs.query({}, (tabs) => {
-        for (let i = 0; i < tabs.length; i++) {
-          chrome.tabs.sendMessage(tabs[i].id, message);
-        }
+        tabs
+          .filter((tab) => tab.url === "chrome://newtab/")
+          .forEach((tab) => chrome.tabs.sendMessage(tab.id, message));
       });
 
       titleInput.placeholder = titleInput.value;
