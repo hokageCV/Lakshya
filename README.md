@@ -2,7 +2,7 @@
 
 Stay organized and mindful about your work by tracking the number of days that have passed in the year every time you open a new tab
 
-![Laskhya_Image](./assets/lakshya_v2.png)
+![Laskhya_Image](./assets/lakshya_v1.png)
 
 ### Installation
 
