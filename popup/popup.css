@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre&display=swap');
 
-:root{
+:root {
     --navBG: #353839;
-    --navText: #F9ab58;
+    --navText: #f9ab58;
     --mainBG: #6c7072;
     --mainText: #fbfcf8;
     --popupOptionBG: #616466;
     --titlePlaceholder: #adaeaf;
 }
 
-body{
+body {
     width: 250px;
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body{
     box-sizing: border-box;
 }
 
-nav{
+nav {
     background-color: var(--navBG);
     padding: 1px;
     margin: 0;
@@ -26,7 +26,7 @@ nav{
     justify-content: center;
     align-items: center;
 }
-nav p{
+nav p {
     font-size: 22px;
     color: var(--navText);
     font-family: 'Averia Serif Libre', cursive;
@@ -36,7 +36,7 @@ nav p{
     height: 30px;
 }
 
-main{
+main {
     font-size: 16px;
     color: var(--mainText);
     font-family: Arial, Helvetica, sans-serif;
@@ -49,10 +49,9 @@ main{
     align-items: flex-start;
 }
 
-
 /* *********************    */
 
-.popupOption{
+.popupOption {
     background-color: var(--popupOptionBG);
     padding: 1px 3px;
     margin: 8px 3px;
@@ -60,11 +59,11 @@ main{
     width: max-content;
 }
 
-.quote{
+.quote {
     padding: 8px;
 }
 
-.title{
+.title {
     display: flex;
     flex-direction: column;
 
@@ -72,13 +71,56 @@ main{
     width: 200px;
 }
 
-.title input{
+.title input {
     outline: none;
     padding: 5px;
     border: none;
     border-radius: 4px;
 }
 
-.title input::placeholder{
-    color: var(--titlePlaceholder)
+.title input::placeholder {
+    color: var(--titlePlaceholder);
 }
+/* ======================================== */
+
+.input-checkbox {
+    appearance: none;
+    position: relative;
+    display: inline-block;
+    background: lightgrey;
+    height: 1.65rem;
+    width: 2.75rem;
+    vertical-align: middle;
+    border-radius: 2rem;
+    box-shadow: 0px 1px 3px #0003 inset;
+    transition: 0.25s linear background;
+}
+.input-checkbox::before {
+    content: '';
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: #fff;
+    border-radius: 1.2rem;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+    box-shadow: 0px 1px 3px #0003;
+    transition: 0.1s linear transform;
+    transform: translateX(0rem);
+}
+:checked {
+  background: green;
+}
+:checked::before {
+  transform: translateX(1rem);
+}
+.input-checkbox:focus {
+    outline-color: transparent;
+  }
+/* for keyboard focus display */
+.input-checkbox:focus-visible {
+  outline: 2px solid dodgerblue;
+  outline-offset: 2px;
+}
+/* ======================================== */
