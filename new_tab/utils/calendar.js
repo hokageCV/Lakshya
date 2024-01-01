@@ -3,6 +3,7 @@ let daysPassed = 0;
 function displayCalendar() {
     const calendar = document.getElementById("calendar");
     let today = new Date();
+    today.setHours(0, 0, 0, 0);
     const year = today.getFullYear();
 
     let monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -20,7 +21,7 @@ function displayCalendar() {
             let dayDate = new Date(year, month, day);
 
             let dot = document.createElement("div");
-            dot.className = `dot`;  
+            dot.className = `dot`;
 
             if (today.getTime() > dayDate.getTime()) {
                 dot.classList.add("passed");
