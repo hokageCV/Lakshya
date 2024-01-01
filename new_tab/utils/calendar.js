@@ -48,7 +48,7 @@ function displayHeadline() {
     const name = data.userName;
     const userName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-    headLine.textContent = `${userName}, ${daysPassed} Days Have Passed This Year`;
+    headLine.textContent = `${userName}, ${daysPassed} day${daysPassed !== 1 ? 's' : ''} have passed this year`;
   });
 }
 
