@@ -9,11 +9,18 @@
     "48": "./assets/icon48.png",
     "128": "./assets/icon128.png"
   },
-  "permissions": ["activeTab", "tabs", "storage", "commands"],
+  "permissions": ["activeTab", "tabs", "storage", "commands", "scripting"],
   "host_permissions": ["<all_urls>"],
   "chrome_url_overrides": {
     "newtab": "./new_tab/new_tab.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./content/content.js"],
+      "run_at": "document_start"
+    }
+  ],
   "background": {
     "service_worker": "./background/backgroundWrapper.js"
   },
