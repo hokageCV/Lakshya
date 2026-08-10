@@ -1,13 +1,17 @@
 async function getQuote() {
-    const API_URL = "https://api.quotable.io/random";
+    const API_URL = "https://api.freeapi.app/api/v1/public/quotes/quote/random";
 
     try {
         const response = await fetch(API_URL);
         const json = await response.json();
 
+        if (!json.success || !json.data) {
+            throw new Error("Failed to fetch quote");
+        }
+
         return {
-            quote: json.content,
-            author: json.author,
+            quote: json.data.content,
+            author: json.data.author,
         };
     } catch (err) {
         console.error("There was a problem with the fetch operation:", err);
