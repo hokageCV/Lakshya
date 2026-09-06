@@ -3,7 +3,7 @@ import { displayHeadlineAndCalendar } from "./utils/calendar.js";
 import { fetchAndDisplayQuote } from "./utils/quote.js";
 import { changeElementDisplay } from "./utils/utils.js";
 import { setUpEventListeners } from "./utils/setUpEventlisteners.js";
-import { displayLifetime, drawConnectingLine } from "./utils/lifetime.js";
+import { displayLifetime, drawConnectingLine, clearConnectingLine } from "./utils/lifetime.js";
 
 const quoteDabba = document.getElementById("quoteDabba");
 const tasksDabba = document.getElementById("tasksDabba");
@@ -47,9 +47,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   // lifetime related
   else if (message.command === "show lifetime") {
-    changeElementDisplay(lifetimeDabba, "block");
+    displayLifetime();
   } else if (message.command === "hide lifetime") {
     changeElementDisplay(lifetimeDabba, "none");
+    clearConnectingLine();
   } else if (message.command === "change lifetime") {
     displayLifetime();
   }
@@ -73,7 +74,12 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   // lifetime dabba
   else if (namespace === "local" && changes.showLifetime) {
     const newShowLifetime = changes.showLifetime.newValue;
-    changeElementDisplay(lifetimeDabba, newShowLifetime ? "block" : "none");
+    if (newShowLifetime) {
+      displayLifetime();
+    } else {
+      changeElementDisplay(lifetimeDabba, "none");
+      clearConnectingLine();
+    }
   }
   // birth year
   else if (namespace === "local" && changes.birthYear) {

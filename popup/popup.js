@@ -4,8 +4,14 @@ const scrollbarCheckbox = document.getElementById("scrollbarCheckbox");
 const titleInput = document.getElementById("titleInput");
 const lifetimeCheckbox = document.getElementById("lifetimeCheckbox");
 const birthYearInput = document.getElementById("birthYearInput");
+const birthYearSection = document.getElementById("birthYearSection");
+
+const updateBirthYearVisibility = () => {
+  birthYearSection.style.display = lifetimeCheckbox.checked ? "flex" : "none";
+};
 
 birthYearInput.max = new Date().getFullYear();
+updateBirthYearVisibility();
 
 document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local
@@ -28,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollbarCheckbox.checked = !!data.hideScrollbar;
       lifetimeCheckbox.checked = !!data.showLifetime;
       birthYearInput.value = data.birthYear || "";
+      updateBirthYearVisibility();
     });
 });
 
@@ -69,6 +76,7 @@ tasksCheckbox.addEventListener("change", () => {
 
 lifetimeCheckbox.addEventListener("change", () => {
   chrome.storage.local.set({ showLifetime: lifetimeCheckbox.checked });
+  updateBirthYearVisibility();
 
   const message = {
     command: lifetimeCheckbox.checked ? "show lifetime" : "hide lifetime",

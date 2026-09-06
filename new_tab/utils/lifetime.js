@@ -1,12 +1,26 @@
 const TOTAL_YEARS = 85;
 
+export function clearConnectingLine() {
+  const svg = document.getElementById("lifetimeLine");
+  if (svg) svg.innerHTML = "";
+}
+
 export function drawConnectingLine() {
   const svg = document.getElementById("lifetimeLine");
   const container = document.querySelector(".container");
   if (!svg || !container) return;
 
+  const lifetimeDabba = document.getElementById("lifetimeDabba");
+  if (lifetimeDabba && lifetimeDabba.style.display === "none") {
+    svg.innerHTML = "";
+    return;
+  }
+
   const currentDot = document.querySelector(".lifetime-dot.current");
-  if (!currentDot) return;
+  if (!currentDot) {
+    svg.innerHTML = "";
+    return;
+  }
 
   const target = document.getElementById("headline-year")
     || document.getElementById("headline")
@@ -25,7 +39,7 @@ export function drawConnectingLine() {
 
   const pathD = `M ${dotCx} ${dotCy} C ${dotCx} ${dotCy + 30}, ${targetCx} ${endY - 30}, ${targetCx} ${endY}`;
 
-  svg.innerHTML = `<path d="${pathD}" fill="none" stroke="var(--lifetimeCurrent)" stroke-width="1.5" stroke-opacity="0.3" stroke-linecap="round"/>`;
+  svg.innerHTML = `<path d="${pathD}" fill="none" stroke="var(--lifetimeCurrent)" stroke-width="1.5" stroke-opacity="0.08" stroke-linecap="round"/>`;
 }
 
 export const displayLifetime = () => {
@@ -34,29 +48,31 @@ export const displayLifetime = () => {
   chrome.storage.local.get(["birthYear", "showLifetime"]).then((data) => {
     if (!data.showLifetime) {
       lifetimeDabba.style.display = "none";
+      clearConnectingLine();
       return;
     }
     lifetimeDabba.style.display = "block";
     lifetimeDabba.innerHTML = "";
 
     const birthYear = data.birthYear || new Date().getFullYear() - 25;
-    const age = Math.min(Math.max(new Date().getFullYear() - birthYear, 0), TOTAL_YEARS - 1);
+    const age = Math.min(Math.max(new Date().getFullYear() - birthYear, 0), TOTAL_YEARS);
 
     const grid = document.createElement("div");
     grid.className = "lifetime-grid";
 
     let decade = null;
-    for (let year = 0; year < TOTAL_YEARS; year++) {
-      if (year % 10 === 0) {
+    for (let ageNum = 1; ageNum <= TOTAL_YEARS; ageNum++) {
+      if ((ageNum - 1) % 10 === 0) {
         decade = document.createElement("div");
         decade.className = "lifetime-decade";
         grid.appendChild(decade);
       }
       const dot = document.createElement("div");
       dot.className = "lifetime-dot";
-      if (year < age) {
+      dot.title = `${birthYear + ageNum} (age ${ageNum})`;
+      if (ageNum < age) {
         dot.classList.add("passed");
-      } else if (year === age) {
+      } else if (ageNum === age) {
         dot.classList.add("current");
       }
       decade.appendChild(dot);
