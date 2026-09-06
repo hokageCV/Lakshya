@@ -1,3 +1,5 @@
+import { drawConnectingLine } from "./lifetime.js";
+
 let daysPassed = 0;
 
 function displayCalendar() {
@@ -48,7 +50,11 @@ function displayHeadline() {
     const name = data.userName;
     const userName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-    headLine.textContent = `${userName}, ${daysPassed} day${daysPassed !== 1 ? 's' : ''} have passed this year`;
+    headLine.innerHTML = `${userName}, ${daysPassed} day${daysPassed !== 1 ? 's' : ''} have passed this <span id="headline-year">year</span>`;
+
+    requestAnimationFrame(() => {
+      drawConnectingLine();
+    });
   });
 }
 

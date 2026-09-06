@@ -2,25 +2,33 @@ const quoteCheckbox = document.getElementById("quoteCheckbox");
 const tasksCheckbox = document.getElementById("tasksCheckbox");
 const scrollbarCheckbox = document.getElementById("scrollbarCheckbox");
 const titleInput = document.getElementById("titleInput");
+const lifetimeCheckbox = document.getElementById("lifetimeCheckbox");
+const birthYearInput = document.getElementById("birthYearInput");
+
+birthYearInput.max = new Date().getFullYear();
 
 document.addEventListener("DOMContentLoaded", () => {
-  chrome.storage.local.get(["showQuote", "showTasks", "docTitle", "hideScrollbar"]).then((data) => {
-    if (data.showQuote) {
-      quoteCheckbox.checked = true;
-    } else {
-      quoteCheckbox.checked = false;
-    }
+  chrome.storage.local
+    .get(["showQuote", "showTasks", "docTitle", "hideScrollbar", "showLifetime", "birthYear"])
+    .then((data) => {
+      if (data.showQuote) {
+        quoteCheckbox.checked = true;
+      } else {
+        quoteCheckbox.checked = false;
+      }
 
-    if (data.showTasks) {
-      tasksCheckbox.checked = true;
-    } else {
-      tasksCheckbox.checked = false;
-    }
+      if (data.showTasks) {
+        tasksCheckbox.checked = true;
+      } else {
+        tasksCheckbox.checked = false;
+      }
 
-    titleInput.placeholder = data?.docTitle;
+      titleInput.placeholder = data?.docTitle;
 
-    scrollbarCheckbox.checked = !!data.hideScrollbar;
-  });
+      scrollbarCheckbox.checked = !!data.hideScrollbar;
+      lifetimeCheckbox.checked = !!data.showLifetime;
+      birthYearInput.value = data.birthYear || "";
+    });
 });
 
 // =====================
@@ -48,6 +56,22 @@ tasksCheckbox.addEventListener("change", () => {
 
   const message = {
     command: tasksCheckbox.checked ? "show tasks" : "hide tasks",
+  };
+
+  chrome.tabs.query({}, (tabs) => {
+    tabs
+      .filter((tab) => tab.url === "chrome://newtab/")
+      .forEach((tab) => chrome.tabs.sendMessage(tab.id, message));
+  });
+});
+
+// =====================
+
+lifetimeCheckbox.addEventListener("change", () => {
+  chrome.storage.local.set({ showLifetime: lifetimeCheckbox.checked });
+
+  const message = {
+    command: lifetimeCheckbox.checked ? "show lifetime" : "hide lifetime",
   };
 
   chrome.tabs.query({}, (tabs) => {
@@ -115,3 +139,30 @@ const titleExists = (str) => {
   }
   return true;
 };
+
+// =====================
+
+birthYearInput.addEventListener("keydown", async (e) => {
+  let keyCode = e.code || e.key;
+  if (keyCode === "Enter") {
+    e.preventDefault();
+
+    const year = parseInt(birthYearInput.value, 10);
+    const currentYear = new Date().getFullYear();
+
+    if (isNaN(year) || year < 1900 || year > currentYear) {
+      alert(`Please enter a year between 1900 and ${currentYear}.`);
+      return;
+    }
+
+    await chrome.storage.local.set({ birthYear: year });
+
+    const message = { command: "change lifetime" };
+
+    chrome.tabs.query({}, (tabs) => {
+      tabs
+        .filter((tab) => tab.url === "chrome://newtab/")
+        .forEach((tab) => chrome.tabs.sendMessage(tab.id, message));
+    });
+  }
+});

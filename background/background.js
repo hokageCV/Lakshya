@@ -14,6 +14,9 @@ chrome.runtime.onInstalled.addListener(async (e) => {
 
     await chrome.storage.local.set({ docTitle: "Blink" });
 
+    await chrome.storage.local.set({ showLifetime: true });
+    await chrome.storage.local.set({ birthYear: new Date().getFullYear() - 25 });
+
     chrome.tabs.create({
       url: "./background/onboard/onboard.html", //this path has to be relative to root directory
     });

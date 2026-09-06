@@ -1,4 +1,5 @@
 import { changeElementDisplay } from "./utils.js";
+import { displayLifetime } from "./lifetime.js";
 
 export const renderDataInitially = () => {
   chrome.storage.local.get(["showQuote", "showTasks", "tasks", "docTitle"]).then((data) => {
@@ -22,5 +23,8 @@ export const renderDataInitially = () => {
 
     // title related
     document.title = data.docTitle;
+
+    // lifetime related
+    displayLifetime();
   });
 };

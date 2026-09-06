@@ -3,9 +3,11 @@ import { displayHeadlineAndCalendar } from "./utils/calendar.js";
 import { fetchAndDisplayQuote } from "./utils/quote.js";
 import { changeElementDisplay } from "./utils/utils.js";
 import { setUpEventListeners } from "./utils/setUpEventlisteners.js";
+import { displayLifetime, drawConnectingLine } from "./utils/lifetime.js";
 
 const quoteDabba = document.getElementById("quoteDabba");
 const tasksDabba = document.getElementById("tasksDabba");
+const lifetimeDabba = document.getElementById("lifetimeDabba");
 
 // =====================
 
@@ -14,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   displayHeadlineAndCalendar();
   fetchAndDisplayQuote();
   setUpEventListeners();
+});
+
+window.addEventListener("resize", () => {
+  drawConnectingLine();
 });
 
 // listening for user actions
@@ -38,6 +44,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       document.title = data.docTitle;
     });
   }
+
+  // lifetime related
+  else if (message.command === "show lifetime") {
+    changeElementDisplay(lifetimeDabba, "block");
+  } else if (message.command === "hide lifetime") {
+    changeElementDisplay(lifetimeDabba, "none");
+  } else if (message.command === "change lifetime") {
+    displayLifetime();
+  }
 });
 
 // =====================
@@ -54,5 +69,14 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   else if (namespace === "local" && changes.showTasks) {
     const newShowTasks = changes.showTasks.newValue;
     changeElementDisplay(tasksDabba, newShowTasks ? "block" : "none");
+  }
+  // lifetime dabba
+  else if (namespace === "local" && changes.showLifetime) {
+    const newShowLifetime = changes.showLifetime.newValue;
+    changeElementDisplay(lifetimeDabba, newShowLifetime ? "block" : "none");
+  }
+  // birth year
+  else if (namespace === "local" && changes.birthYear) {
+    displayLifetime();
   }
 });

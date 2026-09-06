@@ -19,6 +19,8 @@
 
   --quoteText: #c0c2c2;
 
+  --lifetimeCurrent: #ebcb8b;
+
   --notifyBG: #6c7072;
   --notifyText: #fbfcf8;
   --notifyProgressBar: var(--calDayPassed);
@@ -40,8 +42,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 
-  margin: 10px;
+  margin: 5px 10px 10px;
 }
 
 /* ***********************************************************************    */
@@ -112,6 +115,72 @@ body {
   width: 6px;
   height: 6px;
   background-color: var(--calDayPassed);
+}
+
+/* ****************************  Lifetime  *********************************    */
+
+#lifetimeDabba {
+  width: fit-content;
+  max-width: 95%;
+  margin: 0 auto 8px;
+  padding: 10px 4px;
+  box-sizing: border-box;
+
+  background-color: var(--calBG);
+  border-radius: 1rem;
+
+  user-select: none;
+}
+
+.lifetime-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  column-gap: 12px;
+  row-gap: 6px;
+  width: 100%;
+}
+
+.lifetime-decade {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .lifetime-grid {
+    justify-content: center;
+  }
+}
+
+.lifetime-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  border: 2px solid var(--calDotBorder);
+  background-color: var(--calDayLeft);
+  flex: none;
+}
+
+.lifetime-dot.passed {
+  background-color: var(--calDayPassed);
+}
+
+.lifetime-dot.current {
+  background-color: var(--calDayPassed);
+  border-color: var(--lifetimeCurrent);
+}
+
+#lifetimeLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ****************************  Tasks  **********************************    */
