@@ -1,5 +1,8 @@
+const API_BASE_URL =
+    "https://prod-main-api-704464-00tre1p1erm.compute.instacloud-edge.com/api/v1";
+
 async function getQuote() {
-    const API_URL = "https://api.freeapi.app/api/v1/public/quotes/quote/random";
+    const API_URL = `${API_BASE_URL}/public/quotes/quote/random`;
 
     try {
         const response = await fetch(API_URL);
